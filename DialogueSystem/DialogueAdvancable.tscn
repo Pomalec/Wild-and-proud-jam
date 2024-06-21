@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8xh23ykcxex"]
+
+[ext_resource type="Script" path="res://DialogueSystem/DialogueAdvancable.gd" id="1_ohb46"]
+
+[node name="DialogueAdvancable" type="Node"]
+script = ExtResource("1_ohb46")
