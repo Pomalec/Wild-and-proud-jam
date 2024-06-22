@@ -6,7 +6,7 @@ const speed = 30
 var current_state = IDLE
 var is_roaming =true
 
-var dir = Vector2.RIGHT
+var dir = Vector2.LEFT
 var start_pos
 var is_chatting = false
 var player
