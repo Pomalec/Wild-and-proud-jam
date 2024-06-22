@@ -12,29 +12,40 @@ script = ExtResource("1_yaync")
 [node name="Hello" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("2_delhp")
 text_content = "Hello!"
-next_dialogue = NodePath("../Yes or no?")
+next_dialogue = NodePath("../Help?")
 
-[node name="Yes or no?" type="Node" parent="."]
+[node name="Help?" type="Node" parent="."]
 script = ExtResource("3_61xej")
-text_content = "Yes or no?"
+text_content = "Will you help?"
 
-[node name="Yes" type="Node" parent="Yes or no?" node_paths=PackedStringArray("next_dialogue")]
+[node name="FullEffort" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("4_v1025")
-option_content = "Yeah!"
-next_dialogue = NodePath("YesSelected")
+option_content = "Yeah! <2 energy>"
+energy_requirement = 2
+next_dialogue = NodePath("FullEffortConfirm")
 
-[node name="YesSelected" type="Node" parent="Yes or no?/Yes"]
+[node name="FullEffortConfirm" type="Node" parent="Help?/FullEffort"]
 script = ExtResource("2_delhp")
-text_content = "You said yes! Yipee!"
+text_content = "You spend most of the day collecting ingredients. Eggs is extremely thankful!"
 
-[node name="No" type="Node" parent="Yes or no?" node_paths=PackedStringArray("next_dialogue")]
+[node name="HalfEffort" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("4_v1025")
+option_content = "Ill help a bit.. <1 energy>"
+energy_requirement = 1
+next_dialogue = NodePath("HalfEffortConfirm")
+
+[node name="HalfEffortConfirm" type="Node" parent="Help?/HalfEffort"]
+script = ExtResource("2_delhp")
+text_content = "You find a few of the ingredients. Eggs appreciates the effort.."
+
+[node name="No" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("4_v1025")
 option_content = "No.."
-next_dialogue = NodePath("NoSelected")
+next_dialogue = NodePath("NoEfforConfirm")
 
-[node name="NoSelected" type="Node" parent="Yes or no?/No"]
+[node name="NoEfforConfirm" type="Node" parent="Help?/No"]
 script = ExtResource("2_delhp")
-text_content = "You said no! womp womp"
+text_content = "Oh.. ok..."
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

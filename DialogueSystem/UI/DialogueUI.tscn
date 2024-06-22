@@ -33,7 +33,7 @@ layout_mode = 2
 
 [node name="CharacterName" type="Label" parent="VBoxContainer/MainBox/VBoxContainer"]
 layout_mode = 2
-text = "AHHHHHHHHHHHHHHH"
+text = "<name go here hehe>"
 
 [node name="TextArea" type="Label" parent="VBoxContainer/MainBox/VBoxContainer"]
 layout_mode = 2
