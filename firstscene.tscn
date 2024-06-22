@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5xr6c13fxi8g"]
+[gd_scene load_steps=4 format=3 uid="uid://c5xr6c13fxi8g"]
 
 [ext_resource type="PackedScene" uid="uid://dlour52ktvpd4" path="res://scenes/player.tscn" id="1_cc5r5"]
+[ext_resource type="Script" path="res://Pausebar.gd" id="2_w7jab"]
+
+[sub_resource type="GDScript" id="GDScript_bifxb"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://firstscene.tscn\")
+"
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +17,32 @@
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
+
+[node name="Pausebar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 59.0
+offset_top = -65.0
+offset_right = 59.0
+offset_bottom = -65.0
+grow_vertical = 0
+script = ExtResource("2_w7jab")
+
+[node name="MarginContainer" type="MarginContainer" parent="Pausebar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 36.0
+offset_top = -1.0
+offset_right = 56.0
+offset_bottom = 19.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="Pausebar/MarginContainer"]
+layout_mode = 2
+script = SubResource("GDScript_bifxb")
+
+[connection signal="pressed" from="Pausebar/MarginContainer/Button" to="Pausebar" method="_on_button_pressed"]

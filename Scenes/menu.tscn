@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqa2lga8nkin5"]
 
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_wxxjl"]
-[ext_resource type="AudioStream" uid="uid://dpk8kjlanrwg4" path="res://Music/futuristic gay game.wav" id="2_fcrap"]
+[ext_resource type="AudioStream" uid="uid://cfqnc74yuf844" path="res://assets/music/time_for_adventure.mp3" id="2_mi130"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -46,7 +46,7 @@ text = "QUIT"
 [node name="Music" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Music"]
-stream = ExtResource("2_fcrap")
+stream = ExtResource("2_mi130")
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
