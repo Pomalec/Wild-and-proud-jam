@@ -1,127 +1,161 @@
-[gd_scene load_steps=7 format=3 uid="uid://frtkocfqxsx3"]
+[gd_scene load_steps=8 format=3 uid="uid://frtkocfqxsx3"]
 
 [ext_resource type="Script" path="res://DialogueSystem/DialogueAdvancable.gd" id="1_n5gy0"]
 [ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueQuestion.gd" id="2_ulqli"]
 [ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueChoice.gd" id="3_7vwn0"]
 [ext_resource type="Script" path="res://Scenes/Questlines/GeneralChecks/EnergyRemainingBranch.gd" id="4_aa01l"]
+[ext_resource type="PackedScene" uid="uid://w6hth87nydv1" path="res://DialogueSystem/UI/DialogueUI.tscn" id="5_5ljvw"]
 [ext_resource type="Script" path="res://Scenes/Questlines/Mage/MageIngredientQuest/SetIngredientFlag.gd" id="5_80fhe"]
 [ext_resource type="Script" path="res://Scenes/Questlines/GeneralChecks/DaysRemainingBranch.gd" id="6_s564b"]
 
-[node name="Help?" type="Node"]
-script = ExtResource("2_ulqli")
-text_content = "<What will you do?>"
+[node name="Explanation1" type="Node" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "<you enquire about the ingredients>"
+next_dialogue = NodePath("Explanation2")
 
-[node name="FullEffort" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+[node name="Explanation2" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "This place has all sorts of scrap tech just laying around."
+next_dialogue = NodePath("../Explanation3")
+
+[node name="Explanation3" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "I could definetly use some of it to upgrade my magic."
+next_dialogue = NodePath("../Explanation4")
+
+[node name="Explanation4" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "Don't.. question the process."
+next_dialogue = NodePath("../Explanation5")
+
+[node name="Explanation5" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "Anyways, it will take a while to find everything but will help me cast devestating spells against the boss."
+next_dialogue = NodePath("../Explanation6")
+
+[node name="Explanation6" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_n5gy0")
+text_content = "<the mage hands you a long list of scrap parts to find, each described with serial numbers and quick sketches>"
+next_dialogue = NodePath("../Help?")
+
+[node name="Help?" type="Node" parent="."]
+script = ExtResource("2_ulqli")
+text_content = "Could you do that for me?"
+
+[node name="FullEffort" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("3_7vwn0")
 option_content = "I'll find it all! <2 energy>"
 energy_requirement = 2
 next_dialogue = NodePath("FullEffortConfirm")
 
-[node name="FullEffortConfirm" type="Node" parent="FullEffort" node_paths=PackedStringArray("next_dialogue")]
+[node name="FullEffortConfirm" type="Node" parent="Help?/FullEffort" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "You spend most of the day collecting ingredients. Eggs is extremely thankful!"
 next_dialogue = NodePath("../FullEffortConfirm2")
 
-[node name="FullEffortConfirm2" type="Node" parent="FullEffort" node_paths=PackedStringArray("next_dialogue")]
+[node name="FullEffortConfirm2" type="Node" parent="Help?/FullEffort" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "<You return with a bountiful harvest of scrap technology!>"
 next_dialogue = NodePath("../FullEffortConfirm3")
 
-[node name="FullEffortConfirm3" type="Node" parent="FullEffort" node_paths=PackedStringArray("next_dialogue")]
+[node name="FullEffortConfirm3" type="Node" parent="Help?/FullEffort" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "Woah, you found it all?"
 next_dialogue = NodePath("../FullEffortConfirm4")
 
-[node name="FullEffortConfirm4" type="Node" parent="FullEffort" node_paths=PackedStringArray("next_dialogue")]
+[node name="FullEffortConfirm4" type="Node" parent="Help?/FullEffort" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "Well, either that or you've filled that bag with a bunch of heavy rocks!"
 next_dialogue = NodePath("../FullEffortConfirm5")
 
-[node name="FullEffortConfirm5" type="Node" parent="FullEffort"]
+[node name="FullEffortConfirm5" type="Node" parent="Help?/FullEffort"]
 script = ExtResource("5_80fhe")
 set_ingredient_flag_to = 2
 text_content = "Thank you, this won't go to waste! I'll destroy that thing in no time >:)"
 
-[node name="HalfEffort" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+[node name="HalfEffort" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("3_7vwn0")
-option_content = "Ill.. try to find some of it.  <1 energy>"
+option_content = "Ill.. try to find some of it  <1 energy>"
 energy_requirement = 1
 next_dialogue = NodePath("EffortCheck")
 
-[node name="EffortCheck" type="Node" parent="HalfEffort" node_paths=PackedStringArray("possible_branches")]
+[node name="EffortCheck" type="Node" parent="Help?/HalfEffort" node_paths=PackedStringArray("possible_branches")]
 script = ExtResource("4_aa01l")
 possible_branches = [NodePath("YouHadMoreEnergy"), NodePath("YouDidYourBest1")]
 
-[node name="YouDidYourBest1" type="Node" parent="HalfEffort/EffortCheck" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouDidYourBest1" type="Node" parent="Help?/HalfEffort/EffortCheck" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "With the last of your energy, you manage to find a few parts from the list."
 next_dialogue = NodePath("YouDidYourBest2")
 
-[node name="YouDidYourBest2" type="Node" parent="HalfEffort/EffortCheck/YouDidYourBest1" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouDidYourBest2" type="Node" parent="Help?/HalfEffort/EffortCheck/YouDidYourBest1" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = " <You return to the mage with a small bundle>"
 next_dialogue = NodePath("../YouDidYourBest3")
 
-[node name="YouDidYourBest3" type="Node" parent="HalfEffort/EffortCheck/YouDidYourBest1" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouDidYourBest3" type="Node" parent="Help?/HalfEffort/EffortCheck/YouDidYourBest1" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "Oh, thank you. Thats not everything.."
 next_dialogue = NodePath("../YouDidYourBest4")
 
-[node name="YouDidYourBest4" type="Node" parent="HalfEffort/EffortCheck/YouDidYourBest1"]
+[node name="YouDidYourBest4" type="Node" parent="Help?/HalfEffort/EffortCheck/YouDidYourBest1"]
 script = ExtResource("5_80fhe")
 set_ingredient_flag_to = 1
 text_content = "But I can tell you tried your hardest, despite how tired you are. That means alot, thank you."
 
-[node name="YouHadMoreEnergy" type="Node" parent="HalfEffort/EffortCheck" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouHadMoreEnergy" type="Node" parent="Help?/HalfEffort/EffortCheck" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "You only end up collecting a few of the parts requested. "
 next_dialogue = NodePath("YouHadMoreEnergy2")
 
-[node name="YouHadMoreEnergy2" type="Node" parent="HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouHadMoreEnergy2" type="Node" parent="Help?/HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "<You hand in the small bundle>"
 next_dialogue = NodePath("../YouHadMoreEnergy3")
 
-[node name="YouHadMoreEnergy3" type="Node" parent="HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouHadMoreEnergy3" type="Node" parent="Help?/HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "<The mage takes it, knowing by the size that it is incomplete>"
 next_dialogue = NodePath("../YouHadMoreEnergy4")
 
-[node name="YouHadMoreEnergy4" type="Node" parent="HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
+[node name="YouHadMoreEnergy4" type="Node" parent="Help?/HalfEffort/EffortCheck/YouHadMoreEnergy" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
 text_content = "..."
 next_dialogue = NodePath("../YouHadMoreEnergy5")
 
-[node name="YouHadMoreEnergy5" type="Node" parent="HalfEffort/EffortCheck/YouHadMoreEnergy"]
+[node name="YouHadMoreEnergy5" type="Node" parent="Help?/HalfEffort/EffortCheck/YouHadMoreEnergy"]
 script = ExtResource("5_80fhe")
 set_ingredient_flag_to = 1
 text_content = "Thanks, this will help... a bit."
 
-[node name="No" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+[node name="No" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("3_7vwn0")
 option_content = "Maybe later.."
 next_dialogue = NodePath("EnergyRemainingCheck")
 
-[node name="EnergyRemainingCheck" type="Node" parent="No" node_paths=PackedStringArray("possible_branches")]
+[node name="EnergyRemainingCheck" type="Node" parent="Help?/No" node_paths=PackedStringArray("possible_branches")]
 script = ExtResource("4_aa01l")
 possible_branches = [NodePath("HasEnergySoDaysRemainingCheck"), NodePath("../NoEnergyDecline")]
 
-[node name="HasEnergySoDaysRemainingCheck" type="Node" parent="No/EnergyRemainingCheck" node_paths=PackedStringArray("possible_branches")]
+[node name="HasEnergySoDaysRemainingCheck" type="Node" parent="Help?/No/EnergyRemainingCheck" node_paths=PackedStringArray("possible_branches")]
 script = ExtResource("6_s564b")
 possible_branches = [NodePath("FirstDay"), NodePath("2ndDay"), NodePath("LastDay")]
 
-[node name="FirstDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
+[node name="FirstDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "I understand. Hopefully you can help in the coming days."
 
-[node name="2ndDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
+[node name="2ndDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "Ok, let me know if you can do it tommorow."
 
-[node name="LastDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
+[node name="LastDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "This is our last chance to prepare! Please, come back if you have the time."
 
-[node name="NoEnergyDecline" type="Node" parent="No"]
+[node name="NoEnergyDecline" type="Node" parent="Help?/No"]
 script = ExtResource("1_n5gy0")
 text_content = "You do look pretty tired. Get some rest, you'll need it."
+
+[node name="DialogueUI" parent="." node_paths=PackedStringArray("debug_start_on") instance=ExtResource("5_5ljvw")]
+debug_start_on = NodePath("..")
