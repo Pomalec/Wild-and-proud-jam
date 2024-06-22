@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlour52ktvpd4"]
+[gd_scene load_steps=9 format=3 uid="uid://c4dbmba0g72lo"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_n2oja"]
 [ext_resource type="Texture2D" uid="uid://yg5lchatnpbb" path="res://assets/sprites/knight.png" id="2_50rk8"]
@@ -52,3 +52,6 @@ shape = SubResource("CircleShape2D_bumtw")
 position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_2knut")
 frame_progress = 0.448028
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
