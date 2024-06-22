@@ -71,6 +71,7 @@ next_dialogue = NodePath("../YouDidYourBest4")
 script = ExtResource("5_80fhe")
 set_ingredient_flag_to = 1
 text_content = "But I can tell you tried your hardest, despite how tired you are. That means alot, thank you."
+ends_dialogue = true
 
 [node name="YouHadMoreEnergy" type="Node" parent="HalfEffort/EffortCheck" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_n5gy0")
@@ -96,6 +97,7 @@ next_dialogue = NodePath("../YouHadMoreEnergy5")
 script = ExtResource("5_80fhe")
 set_ingredient_flag_to = 1
 text_content = "Thanks, this will help... a bit."
+ends_dialogue = true
 
 [node name="No" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("3_7vwn0")
@@ -113,15 +115,19 @@ possible_branches = [NodePath("FirstDay"), NodePath("2ndDay"), NodePath("LastDay
 [node name="FirstDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "I understand. Hopefully you can help in the coming days."
+ends_dialogue = true
 
 [node name="2ndDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "Ok, let me know if you can do it tommorow."
+ends_dialogue = true
 
 [node name="LastDay" type="Node" parent="No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("1_n5gy0")
 text_content = "This is our last chance to prepare! Please, come back if you have the time."
+ends_dialogue = true
 
 [node name="NoEnergyDecline" type="Node" parent="No"]
 script = ExtResource("1_n5gy0")
 text_content = "You do look pretty tired. Get some rest, you'll need it."
+ends_dialogue = true

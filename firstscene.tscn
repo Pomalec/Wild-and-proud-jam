@@ -15,7 +15,7 @@ func _on_pressed():
 
 [node name="Player" parent="." instance=ExtResource("1_cc5r5")]
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 

@@ -88,6 +88,7 @@ next_dialogue = NodePath("DialogueAdvancable")
 [node name="DialogueAdvancable" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/No"]
 script = ExtResource("1_nuyhs")
 text_content = "Then it'll have to wait. Sorry."
+ends_dialogue = true
 
 [node name="Request1" type="Node" parent="AreYouAwareOfQuest" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("1_nuyhs")
