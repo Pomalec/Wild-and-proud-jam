@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5xr6c13fxi8g"]
 
-[ext_resource type="PackedScene" uid="uid://c4dbmba0g72lo" path="res://Scenes/player.tscn" id="1_cc5r5"]
+[ext_resource type="PackedScene" uid="uid://dlour52ktvpd4" path="res://Scenes/player.tscn" id="1_cc5r5"]
 [ext_resource type="Script" path="res://Pausebar.gd" id="2_w7jab"]
-[ext_resource type="PackedScene" path="res://Scenes/party_member_npc.tscn" id="3_eeewc"]
+[ext_resource type="PackedScene" uid="uid://dmibxkdfauigt" path="res://Scenes/party_member.tscn" id="3_r3lv5"]
 
 [sub_resource type="GDScript" id="GDScript_bifxb"]
 script/source = "extends Button
@@ -40,7 +40,6 @@ offset_bottom = 7.0
 layout_mode = 2
 script = SubResource("GDScript_bifxb")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_eeewc")]
-position = Vector2(47, 0)
+[node name="PartyMember" parent="." instance=ExtResource("3_r3lv5")]
 
 [connection signal="pressed" from="Player/Pausebar/MarginContainer/Button" to="Player/Pausebar" method="_on_button_pressed"]
