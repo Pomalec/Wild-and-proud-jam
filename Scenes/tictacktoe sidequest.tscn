@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://co8yjn2cyr82"]
+[gd_scene load_steps=4 format=3 uid="uid://l3svjm1bm6br"]
 
 [ext_resource type="Script" path="res://Scenes/tictacktoe sidequest.gd" id="1_sssnx"]
 [ext_resource type="Texture2D" uid="uid://d30g3krlj57w2" path="res://assets/Randomimages/square-xxl.png" id="2_68xe7"]

@@ -62,6 +62,9 @@ func advance_button_pressed():
 	print('test')
 	if current_dialogue is DialogueAdvancable:
 		current_dialogue.continue_pressed()
+		if current_dialogue.ends_dialogue:
+			visible = false
+			return
 		current_dialogue = current_dialogue.next_dialogue
 		update()
 
