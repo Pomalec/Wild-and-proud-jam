@@ -18,31 +18,25 @@ func _on_pressed():
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 
-[node name="Pausebar" type="Control" parent="."]
+[node name="Pausebar" type="Control" parent="Player"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 59.0
-offset_top = -65.0
-offset_right = 59.0
-offset_bottom = -65.0
-grow_vertical = 0
+anchors_preset = 0
+offset_left = 107.0
+offset_top = -63.0
+offset_right = 107.0
+offset_bottom = -63.0
+localize_numeral_system = false
 script = ExtResource("2_w7jab")
 
-[node name="MarginContainer" type="MarginContainer" parent="Pausebar"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 36.0
+[node name="MarginContainer" type="MarginContainer" parent="Player/Pausebar"]
+layout_mode = 0
+offset_left = -1.0
 offset_top = -1.0
-offset_right = 56.0
-offset_bottom = 19.0
-grow_horizontal = 0
+offset_right = 7.0
+offset_bottom = 7.0
 
-[node name="Button" type="Button" parent="Pausebar/MarginContainer"]
+[node name="Button" type="Button" parent="Player/Pausebar/MarginContainer"]
 layout_mode = 2
 script = SubResource("GDScript_bifxb")
 
-[connection signal="pressed" from="Pausebar/MarginContainer/Button" to="Pausebar" method="_on_button_pressed"]
+[connection signal="pressed" from="Player/Pausebar/MarginContainer/Button" to="Player/Pausebar" method="_on_button_pressed"]
