@@ -1,4 +1,4 @@
-@icon('res://DialogueSystem/UI/dialogue_question_icon.png')
+@icon('res://DialogueSystem/Choice/dialogue_question_icon.png')
 extends Dialogue
 class_name DialogueQuestion
 
@@ -7,6 +7,3 @@ class_name DialogueQuestion
 #What the question is. 'Will you help?' etc.
 @export_multiline var text_content : String
 
-
-func activate():
-	print(text_content)

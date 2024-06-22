@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8a2suuk4rwel"
-path="res://.godot/imported/dialogue_question_icon.png-74a1b4e13a1ad1259e3d6c65794325bd.ctex"
+uid="uid://bwams3anfvmbs"
+path="res://.godot/imported/menubar1.png-380dee03d5e181bd1b05acc2d37c9b35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DialogueSystem/UI/dialogue_question_icon.png"
-dest_files=["res://.godot/imported/dialogue_question_icon.png-74a1b4e13a1ad1259e3d6c65794325bd.ctex"]
+source_file="res://assets/Randomimages/menubar1.png"
+dest_files=["res://.godot/imported/menubar1.png-380dee03d5e181bd1b05acc2d37c9b35.ctex"]
 
 [params]
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://clwiahag6njcc"]
+[gd_scene load_steps=8 format=3 uid="uid://clwiahag6njcc"]
 
 [ext_resource type="Script" path="res://DialogueSystem/testroom.gd" id="1_yaync"]
 [ext_resource type="Script" path="res://DialogueSystem/DialogueAdvancable.gd" id="2_delhp"]
 [ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueQuestion.gd" id="3_61xej"]
 [ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueChoice.gd" id="4_v1025"]
 [ext_resource type="PackedScene" uid="uid://w6hth87nydv1" path="res://DialogueSystem/UI/DialogueUI.tscn" id="5_4jglu"]
+[ext_resource type="Script" path="res://Scenes/Questlines/GeneralChecks/EnergyRemainingBranch.gd" id="5_owilr"]
+[ext_resource type="Script" path="res://Scenes/Questlines/GeneralChecks/DaysRemainingBranch.gd" id="6_uvl0s"]
 
 [node name="Testroom" type="Node2D"]
 script = ExtResource("1_yaync")
@@ -32,20 +34,48 @@ text_content = "You spend most of the day collecting ingredients. Eggs is extrem
 script = ExtResource("4_v1025")
 option_content = "Ill help a bit.. <1 energy>"
 energy_requirement = 1
-next_dialogue = NodePath("HalfEffortConfirm")
+next_dialogue = NodePath("EffortCheck")
 
-[node name="HalfEffortConfirm" type="Node" parent="Help?/HalfEffort"]
+[node name="EffortCheck" type="Node" parent="Help?/HalfEffort" node_paths=PackedStringArray("possible_branches")]
+script = ExtResource("5_owilr")
+possible_branches = [NodePath("YouHadMoreEnergy"), NodePath("YouDidYourBest")]
+
+[node name="YouHadMoreEnergy" type="Node" parent="Help?/HalfEffort/EffortCheck"]
 script = ExtResource("2_delhp")
-text_content = "You find a few of the ingredients. Eggs appreciates the effort.."
+text_content = "You only get a few of the ingredients. They seem unimpressed, but thank you regardless."
+
+[node name="YouDidYourBest" type="Node" parent="Help?/HalfEffort/EffortCheck"]
+script = ExtResource("2_delhp")
+text_content = "You only get a few of the ingredients. They see how tired you are and appreciate you trying your hardest anyway."
 
 [node name="No" type="Node" parent="Help?" node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("4_v1025")
-option_content = "No.."
-next_dialogue = NodePath("NoEfforConfirm")
+option_content = "I can't do that right now."
+next_dialogue = NodePath("EnergyRemainingCheck")
 
-[node name="NoEfforConfirm" type="Node" parent="Help?/No"]
+[node name="EnergyRemainingCheck" type="Node" parent="Help?/No" node_paths=PackedStringArray("possible_branches")]
+script = ExtResource("5_owilr")
+possible_branches = [NodePath("."), NodePath("../NoEnergyDecline")]
+
+[node name="HasEnergySoDaysRemainingCheck" type="Node" parent="Help?/No/EnergyRemainingCheck" node_paths=PackedStringArray("possible_branches")]
+script = ExtResource("6_uvl0s")
+possible_branches = [NodePath("FirstDay"), NodePath("2ndDay"), NodePath("LastDay")]
+
+[node name="FirstDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
 script = ExtResource("2_delhp")
-text_content = "Oh.. ok..."
+text_content = "I understand. Hopefully you can help in the coming days."
+
+[node name="2ndDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
+script = ExtResource("2_delhp")
+text_content = "Ok, let me know if you can do it tommorow."
+
+[node name="LastDay" type="Node" parent="Help?/No/EnergyRemainingCheck/HasEnergySoDaysRemainingCheck"]
+script = ExtResource("2_delhp")
+text_content = "This is our last chance to prepare! Please, come back if you have the time."
+
+[node name="NoEnergyDecline" type="Node" parent="Help?/No"]
+script = ExtResource("2_delhp")
+text_content = "You do look pretty tired. Get some rest, you'll need it."
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
