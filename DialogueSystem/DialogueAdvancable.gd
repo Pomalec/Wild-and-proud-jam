@@ -13,17 +13,14 @@ class_name DialogueAdvancable
 @export var next_dialogue : Dialogue
 
 
-# call to begin this dialogue
-func activate():
-	print(text_content)
-	continue_pressed()
-
-# player reads this dialogue and presses the advance button
-func continue_pressed():
+func _ready():
 	if next_dialogue == null:
-		push_error('Next dialogue not defined')
-		return
-	next_dialogue.activate()
+		push_warning('Next dialogue not defined for %s' % name)
+
+# player reads this dialogue and presses the advance button. Set custom events here
+func continue_pressed():
+	return
+	
 	
 	
 	

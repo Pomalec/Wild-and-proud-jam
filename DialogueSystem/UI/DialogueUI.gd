@@ -9,8 +9,16 @@ extends Control
 #scene for choices/answers to questions
 @onready var choice_scene : PackedScene = preload("res://DialogueSystem/UI/DialogueChoice.tscn")
 
+#opens this dialogue on ready for testing
+@export var debug_start_on : Dialogue
+
+
 var current_dialogue : Dialogue
 
+func _ready():
+	if debug_start_on != null:
+		current_dialogue = debug_start_on
+		update()
 
 func update():
 	
@@ -20,6 +28,12 @@ func update():
 	
 	if current_dialogue == null:
 		push_error('Cant update UI to display null dialogue!')
+		return
+		
+	if current_dialogue is DialogueBranch:
+		print('branching')
+		current_dialogue = current_dialogue.get_next_dialogue()
+		update()
 		return
 		
 	if current_dialogue is DialogueAdvancable:
@@ -36,15 +50,18 @@ func update():
 			new_choice.choice = i
 			new_choice.dialogue_ui = self
 			options_holder.add_child(new_choice)
+			
+		return
 		
 	
-	push_error('Unrecognised dialogue')
+	push_error('Unrecognised dialogue: ', current_dialogue)
 		
 
 #player presses button to continue dialogue
 func advance_button_pressed():
 	print('test')
 	if current_dialogue is DialogueAdvancable:
+		current_dialogue.continue_pressed()
 		current_dialogue = current_dialogue.next_dialogue
 		update()
 
