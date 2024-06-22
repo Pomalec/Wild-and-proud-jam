@@ -1,4 +1,5 @@
 extends Node2D
 
 func _ready():
-	$Hello.activate()
+	$CanvasLayer/DialogueUI.current_dialogue = $Hello
+	$CanvasLayer/DialogueUI.update()
