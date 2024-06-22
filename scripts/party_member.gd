@@ -1,68 +1,61 @@
 extends CharacterBody2D
 
+@onready var character_sprite : AnimatedSprite2D = $PartyMemberSprite
+@onready var move_timer : Timer = $MoveTimer
+
+#Change these to give the character more personality
+# High speed + chance of changing direction looks more nervous and scared
+
+@export var speed = 30
+@export var change_direction_chance : float = 0.5
 
 
-const speed = 30
-var current_state = IDLE
-var is_roaming =true
 
-var dir = Vector2.LEFT
-var start_pos
+var is_roaming = true
+
 var is_chatting = false
 var player
 var player_in_chat_zone =false
 
-enum {
+enum MOVE_STATES {
 	IDLE,
-	NEW_DIR,
 	MOVE
 }
+var current_state : MOVE_STATES = MOVE_STATES.IDLE
+
+
+var available_directions = [Vector2.UP, Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN]
+var current_direction = Vector2.RIGHT
+
+
+
+
+
 
 func _ready():
 	randomize()
-	$Timer.start()
-	start_pos = position
+	#set an initial direction and state randomly
+	_on_move_timer_timeout()
 
 func _process(delta):
-		if current_state == 0 or current_state ==1:
-			$party_member.play("default")
-		elif current_state == 2 and !is_chatting:
-			if dir.x == -1:
-				$party_member.play("walk_a")
-			if dir.x == 1:
-				$party_member.play("walk_d")
-			if dir.y == -1:
-				$party_member.play("walk_w")
-			if dir.y == 1:
-				$party_member.play("walk_s")
 	
-		if is_roaming:
-			match current_state:
-				IDLE:
-					pass
-				NEW_DIR:
-					dir = choose([Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN])
-				MOVE:
-					move(delta)
-		if Input.is_action_just_pressed("interact"):
-			print ("chatting ")
-			is_roaming = false
-			is_chatting = true
-			$party_member.play("default")
+	#this could technically be put in the timer timeout but
+	#its easier to understand here.
+	if current_state == MOVE_STATES.MOVE:
+		velocity = current_direction * speed
+	else:
+		velocity = Vector2.ZERO
 
-func choose(array):
-	print("choose")
-	array.shuffle()
-	return array.front()
 	
-func move(delta):
-	if !is_chatting:
-		position += dir * speed * delta
+	if Input.is_action_just_pressed("interact"):
+		print ("chatting ")
+		is_roaming = false
+		is_chatting = true
+		character_sprite.play("default")
+			
+	move_and_slide()
+
 	
-	
-
-
-
 func _on_chatdetection_body_entered(body):
 	if body.has_method("player"):
 		player = body
@@ -74,7 +67,28 @@ func _on_chatdetection_body_exited(body):
 		player_in_chat_zone = false
 		
 
-func on_timer_timeout():
-	$Timer.wait_time = choose([0.5,1,1.5])
-	print ("timeout")
-	current_state = choose([IDLE, NEW_DIR, MOVE])
+func _on_move_timer_timeout():
+	#set wait time to a second or so and whether to stand idle or wander
+	move_timer.wait_time = randf_range(0.5, 2.5)
+	current_state = MOVE_STATES.values()[randi() % MOVE_STATES.size()]
+	
+	#chance to change walk direction
+	if change_direction_chance > randi_range(0,1):
+		current_direction = available_directions.pick_random()
+		
+	#set looping animation to match direction if moving		
+	if current_state == MOVE_STATES.MOVE:
+		match current_direction:
+			Vector2.UP:
+				character_sprite.play("walk_up")
+			Vector2.DOWN:
+				character_sprite.play("walk_down")
+			Vector2.LEFT:
+				character_sprite.play("walk_left")
+			Vector2.RIGHT:
+				character_sprite.play("walk_right")
+		
+	#else play default anim
+	if current_state == MOVE_STATES.IDLE:
+		character_sprite.play("default")
+		

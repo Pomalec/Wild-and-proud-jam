@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5xr6c13fxi8g"]
+[gd_scene load_steps=5 format=3 uid="uid://c5xr6c13fxi8g"]
 
 [ext_resource type="PackedScene" uid="uid://dlour52ktvpd4" path="res://Scenes/player.tscn" id="1_cc5r5"]
 [ext_resource type="Script" path="res://Pausebar.gd" id="2_w7jab"]
+[ext_resource type="PackedScene" uid="uid://dmibxkdfauigt" path="res://Scenes/party_member.tscn" id="3_r3lv5"]
 
 [sub_resource type="GDScript" id="GDScript_bifxb"]
 script/source = "extends Button
@@ -38,5 +39,7 @@ offset_bottom = 7.0
 [node name="Button" type="Button" parent="Player/Pausebar/MarginContainer"]
 layout_mode = 2
 script = SubResource("GDScript_bifxb")
+
+[node name="PartyMember" parent="." instance=ExtResource("3_r3lv5")]
 
 [connection signal="pressed" from="Player/Pausebar/MarginContainer/Button" to="Player/Pausebar" method="_on_button_pressed"]

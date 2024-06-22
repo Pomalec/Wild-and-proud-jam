@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://w6hth87nydv1"]
+[gd_scene load_steps=2 format=3 uid="uid://w6hth87nydv1"]
 
 [ext_resource type="Script" path="res://DialogueSystem/UI/DialogueUI.gd" id="1_rne02"]
-[ext_resource type="PackedScene" uid="uid://udb584jlfob3" path="res://DialogueSystem/UI/DialogueChoice.tscn" id="2_ic118"]
 
 [node name="DialogueUI" type="Control"]
 layout_mode = 3
@@ -38,14 +37,8 @@ text = "<name go here hehe>"
 [node name="TextArea" type="Label" parent="VBoxContainer/MainBox/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "hello there"
+text = "..."
 
 [node name="Options" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 2
-
-[node name="DialogueChoice" parent="VBoxContainer/Options" instance=ExtResource("2_ic118")]
-layout_mode = 2
-
-[node name="DialogueChoice2" parent="VBoxContainer/Options" instance=ExtResource("2_ic118")]
-layout_mode = 2
