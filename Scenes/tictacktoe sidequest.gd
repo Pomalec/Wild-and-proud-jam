@@ -254,7 +254,10 @@ func _game_over():
 func _aibot():
 	if array1[my_random_number] == 1 or array1[my_random_number] == 2:
 		my_random_number = rng.randi_range(0,8)
-		_aibot()
+		if ifgameover == 9:
+			_game_over()
+		else:
+			_aibot()
 	else:
 		if my_random_number == 0:
 			get_node("MarginContainer/GridContainer/TextureButton").texture_normal = iconx

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://do3x0lqxct23g"]
+[gd_scene load_steps=32 format=3 uid="uid://ywe3odfgiir2"]
 
 [ext_resource type="Script" path="res://scripts/party_member.gd" id="1_4t7ht"]
 [ext_resource type="Texture2D" uid="uid://0flrot5hrf4a" path="res://assets/sprites/person.png" id="2_8rgh4"]
@@ -235,7 +235,6 @@ shape = SubResource("RectangleShape2D_o3jay")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="chatdetection"]
 position = Vector2(0.5, -2.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ljhkf")
 
 [node name="Timer" type="Timer" parent="."]
