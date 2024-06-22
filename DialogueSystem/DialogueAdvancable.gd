@@ -11,7 +11,6 @@ class_name DialogueAdvancable
 
 # Next piece to advance to.
 @export var next_dialogue : Dialogue
-@export var ends_dialogue : bool = false
 
 
 func _ready():
