@@ -280,7 +280,6 @@ func _aibot():
 		playerxturn = false
 		ifgameover = ifgameover + 1
 		_game_over()
-		print(my_random_number)
 		
 	
 
