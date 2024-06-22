@@ -37,7 +37,7 @@ text = "<name go here hehe>"
 [node name="TextArea" type="Label" parent="VBoxContainer/MainBox/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "..."
+text = "hello there"
 
 [node name="Options" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
