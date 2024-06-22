@@ -8,6 +8,9 @@ var playerxturn = false
 var ifgameover = 0
 
 var array1 = [11, 22, 3, 4, 5, 6,7, 8, 9]
+var rng = RandomNumberGenerator.new()
+
+var my_random_number = rng.randi_range(0,8)
 
 func _on_texture_button_pressed():
 	if array1[0] == 11:
@@ -18,13 +21,14 @@ func _on_texture_button_pressed():
 			array1[0] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[0] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[0] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_2_pressed():
@@ -36,13 +40,14 @@ func _on_texture_button_2_pressed():
 			array1[1] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton2").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[1] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton2").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[1] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_3_pressed():
@@ -54,13 +59,14 @@ func _on_texture_button_3_pressed():
 			array1[2] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton3").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[2] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton3").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[2] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_4_pressed():
@@ -72,13 +78,14 @@ func _on_texture_button_4_pressed():
 			array1[3] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton4").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[3] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton4").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[3] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_5_pressed():
@@ -90,13 +97,14 @@ func _on_texture_button_5_pressed():
 			array1[4] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton5").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[4] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton5").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[4] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_6_pressed():
@@ -108,13 +116,14 @@ func _on_texture_button_6_pressed():
 			array1[5] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton6").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[5] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton6").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[5] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_7_pressed():
@@ -126,13 +135,14 @@ func _on_texture_button_7_pressed():
 			array1[6] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton7").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[6] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton7").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[6] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_8_pressed():
@@ -144,13 +154,14 @@ func _on_texture_button_8_pressed():
 			array1[7] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton8").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[7] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton8").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[7] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 
 
 func _on_texture_button_9_pressed():
@@ -162,13 +173,14 @@ func _on_texture_button_9_pressed():
 			array1[8] = 1
 			ifgameover = ifgameover + 1
 			_game_over()
-		elif playerxturn:
-			get_node("MarginContainer/GridContainer/TextureButton9").texture_normal = iconx
-			playeroturn = true
-			playerxturn = false
-			array1[8] = 2
-			ifgameover = ifgameover + 1
-			_game_over()
+			_aibot()
+		#elif playerxturn:
+			#get_node("MarginContainer/GridContainer/TextureButton9").texture_normal = iconx
+			#playeroturn = true
+			#playerxturn = false
+			#array1[8] = 2
+			#ifgameover = ifgameover + 1
+			#_game_over()
 			
 
 func _game_over():
@@ -238,5 +250,37 @@ func _game_over():
 		print("X wins")
 	if ifgameover == 9:
 		print("gameover")
+		
+func _aibot():
+	if array1[my_random_number] == 1 or array1[my_random_number] == 2:
+		my_random_number = rng.randi_range(0,8)
+		_aibot()
+	else:
+		if my_random_number == 0:
+			get_node("MarginContainer/GridContainer/TextureButton").texture_normal = iconx
+		elif my_random_number == 1:
+			get_node("MarginContainer/GridContainer/TextureButton2").texture_normal = iconx
+		elif my_random_number == 2:
+			get_node("MarginContainer/GridContainer/TextureButton3").texture_normal = iconx
+		elif my_random_number == 3:
+			get_node("MarginContainer/GridContainer/TextureButton4").texture_normal = iconx
+		elif my_random_number == 4:
+			get_node("MarginContainer/GridContainer/TextureButton5").texture_normal = iconx
+		elif my_random_number == 5:
+			get_node("MarginContainer/GridContainer/TextureButton6").texture_normal = iconx
+		elif my_random_number == 6:
+			get_node("MarginContainer/GridContainer/TextureButton7").texture_normal = iconx
+		elif my_random_number == 7:
+			get_node("MarginContainer/GridContainer/TextureButton8").texture_normal = iconx
+		elif my_random_number == 8:
+			get_node("MarginContainer/GridContainer/TextureButton9").texture_normal = iconx
+				
+		array1[my_random_number] = 2 
+		playeroturn = true
+		playerxturn = false
+		ifgameover = ifgameover + 1
+		_game_over()
+		print(my_random_number)
+		
 	
 
