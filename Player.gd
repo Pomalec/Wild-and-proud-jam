@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var interact_ui = $InteractUI
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4dbmba0g72lo"]
+[gd_scene load_steps=10 format=3 uid="uid://c4dbmba0g72lo"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_n2oja"]
 [ext_resource type="Texture2D" uid="uid://yg5lchatnpbb" path="res://assets/sprites/knight.png" id="2_50rk8"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://assets/fonts/ARCADECLASSIC.TTF" id="3_0ckac"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bumtw"]
 
@@ -41,7 +42,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_n2oja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -52,3 +53,41 @@ shape = SubResource("CircleShape2D_bumtw")
 position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_2knut")
 frame_progress = 0.448028
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 2)
+zoom = Vector2(4, 4)
+
+[node name="InteractUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="InteractUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -53.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.695864, 0.000372532, 0.697326, 1)
+
+[node name="Label" type="Label" parent="InteractUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -23.0
+offset_right = 136.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_0ckac")
+theme_override_font_sizes/font_size = 30
+text = "Press \"E\" to pick up"
