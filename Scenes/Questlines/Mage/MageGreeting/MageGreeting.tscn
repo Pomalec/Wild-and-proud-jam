@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://t3r4paewxayc"]
+
+[ext_resource type="Script" path="res://Scenes/Questlines/GeneralChecks/DaysRemainingBranch.gd" id="1_2tn22"]
+[ext_resource type="Script" path="res://DialogueSystem/DialogueAdvancable.gd" id="1_nuyhs"]
+[ext_resource type="Script" path="res://Scenes/Questlines/Mage/MageGreeting/IsIngredientQuestHeard.gd" id="3_trjd6"]
+[ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueQuestion.gd" id="4_cblxd"]
+[ext_resource type="Script" path="res://DialogueSystem/Choice/DialogueChoice.gd" id="5_u6ldy"]
+[ext_resource type="PackedScene" uid="uid://w6hth87nydv1" path="res://DialogueSystem/UI/DialogueUI.tscn" id="6_54bxk"]
+[ext_resource type="PackedScene" uid="uid://frtkocfqxsx3" path="res://Scenes/Questlines/Mage/MageIngredientQuest/IngriedientQuest.tscn" id="6_b6gg8"]
+[ext_resource type="Script" path="res://Scenes/Questlines/Mage/MageGreeting/SetIngredientQuestHeard.gd" id="7_2tnts"]
+[ext_resource type="PackedScene" uid="uid://601610qyilei" path="res://Autoload/CheatMenu/cheatmenu.tscn" id="9_vf8e1"]
+
+[node name="DaysLeft" type="Node" node_paths=PackedStringArray("possible_branches")]
+script = ExtResource("1_2tn22")
+possible_branches = [NodePath("3Days"), NodePath("2Days"), NodePath("1Day")]
+
+[node name="3Days" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "Hey player. The camps all set up, so we can get down to preparing."
+next_dialogue = NodePath("../AreYouAwareOfQuest")
+
+[node name="2Days" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "Hello, player. Its nice to see you, the aura is.. tense."
+next_dialogue = NodePath("../AreYouAwareOfQuest")
+
+[node name="1Day" type="Node" parent="." node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "...This is our last day to prepare for the big fight. Hope you are doing well with such a looming threat."
+next_dialogue = NodePath("../AreYouAwareOfQuest")
+
+[node name="AreYouAwareOfQuest" type="Node" parent="." node_paths=PackedStringArray("possible_branches")]
+script = ExtResource("3_trjd6")
+possible_branches = [NodePath("IsThisAboutQuest"), NodePath("Request1")]
+
+[node name="IsThisAboutQuest" type="Node" parent="AreYouAwareOfQuest"]
+script = ExtResource("4_cblxd")
+text_content = "Are you able to find the parts for me?"
+
+[node name="Yes" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("5_u6ldy")
+option_content = "Yes"
+next_dialogue = NodePath("IngredientQuestline")
+
+[node name="IngredientQuestline" parent="AreYouAwareOfQuest/IsThisAboutQuest/Yes" instance=ExtResource("6_b6gg8")]
+
+[node name="Explain" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("5_u6ldy")
+option_content = "<replay quest explanation>"
+next_dialogue = NodePath("Explanation1")
+
+[node name="Explanation1" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "<you enquire about the ingredients>"
+next_dialogue = NodePath("Explanation2")
+
+[node name="Explanation2" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain/Explanation1" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "This place has all sorts of scrap tech just laying around."
+next_dialogue = NodePath("../Explanation3")
+
+[node name="Explanation3" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain/Explanation1" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "I could definetly use some of it to upgrade my magic."
+next_dialogue = NodePath("../Explanation4")
+
+[node name="Explanation4" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain/Explanation1" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "Don't.. question the process."
+next_dialogue = NodePath("../Explanation5")
+
+[node name="Explanation5" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain/Explanation1" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "Anyways, it will take a while to find everything but will help me cast devestating spells against the boss."
+next_dialogue = NodePath("../Explanation6")
+
+[node name="Explanation6" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/Explain/Explanation1" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("7_2tnts")
+text_content = "<They hand you a note containing a long list of computer parts alongside quick sketches and serial numbers>"
+next_dialogue = NodePath("../../..")
+
+[node name="No" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("5_u6ldy")
+option_content = "No.
+"
+next_dialogue = NodePath("DialogueAdvancable")
+
+[node name="DialogueAdvancable" type="Node" parent="AreYouAwareOfQuest/IsThisAboutQuest/No"]
+script = ExtResource("1_nuyhs")
+text_content = "Then it'll have to wait. Sorry."
+
+[node name="Request1" type="Node" parent="AreYouAwareOfQuest" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "I'm sorry to interrupt your personal preperations but.."
+next_dialogue = NodePath("../Request2")
+
+[node name="Request2" type="Node" parent="AreYouAwareOfQuest" node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("1_nuyhs")
+text_content = "I must ask for your help with something."
+next_dialogue = NodePath("../IsThisAboutQuest/Explain/Explanation1/Explanation2")
+
+[node name="DialogueUI" parent="." instance=ExtResource("6_54bxk")]
+
+[node name="CheatMenu" parent="." node_paths=PackedStringArray("dialogue_ui", "debug_dialogue") instance=ExtResource("9_vf8e1")]
+dialogue_ui = NodePath("../DialogueUI")
+debug_dialogue = NodePath("..")

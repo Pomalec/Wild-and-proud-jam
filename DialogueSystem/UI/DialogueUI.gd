@@ -9,16 +9,7 @@ extends Control
 #scene for choices/answers to questions
 @onready var choice_scene : PackedScene = preload("res://DialogueSystem/UI/DialogueChoice.tscn")
 
-#opens this dialogue on ready for testing
-@export var debug_start_on : Dialogue
-
-
 var current_dialogue : Dialogue
-
-func _ready():
-	if debug_start_on != null:
-		current_dialogue = debug_start_on
-		update()
 
 func update():
 	
