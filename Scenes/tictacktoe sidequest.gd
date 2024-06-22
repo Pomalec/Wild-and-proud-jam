@@ -184,7 +184,7 @@ func _on_texture_button_9_pressed():
 			
 
 func _game_over():
-	if array1[0]== 1 and array1[2] == 1 and array1[2] == 1:##checks for wins for O
+	if array1[0]== 1 and array1[1] == 1 and array1[2] == 1:##checks for wins for O
 		playeroturn = false
 		playerxturn = false
 		print("O wins")
@@ -216,7 +216,7 @@ func _game_over():
 		playeroturn = false
 		playerxturn = false
 		print("O wins")
-	elif array1[0]== 2 and array1[2] == 2 and array1[2] == 2:##checks for wins for X
+	elif array1[0]== 2 and array1[1] == 2 and array1[2] == 2:##checks for wins for X
 		playeroturn = false
 		playerxturn = false
 		print("O wins")
